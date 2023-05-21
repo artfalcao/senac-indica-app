@@ -12,13 +12,13 @@ const Stack = createStackNavigator();
 export default function App() {
 
   // const [loading, setLoading] = useState(true)
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState('Arthur')
 
   return (
     <NavigationContainer>
       <Stack.Navigator>
         { user ? (
-          <Stack.Screen name="Home">
+          <Stack.Screen name={`Hello, ${user}`}>
             {props => <HomeScreen {...props} extraData={user} />}
           </Stack.Screen>
         ) : (
