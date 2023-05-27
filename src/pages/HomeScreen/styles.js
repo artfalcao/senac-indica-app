@@ -2,33 +2,35 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
     header: {
-        alignItems: 'center',
-        backgroundColor: "#B66E6F",
+        align: 'center',
         height: "20%",
     },
     row1: {
         flexDirection: "row",
-        justifyContent: "space-around",
+        justifyContent: "space-between",
         alignItems: "center",
         width: "95%",
-        marginTop: 16
+        marginTop: 16,
+        alignSelf: 'center',
     },
     logo: {
         height: 60,
-        width: 60,
-        alignSelf: "center",
-    },
-    logo2: {
-        height: 60,
-        width: 120,
+        width: 160,
+        resizeMode: "contain",
         alignSelf: "center",
     },
     local: {
-        color: 'white',
+        color: "#B66E6F",
         fontSize: 14,
-        fontWeight:'normal'
+        fontWeight:'bold'
+    },
+    searchBox: {
+        width: "95%",
+        alignSelf: 'center',
+        alignItems: 'center'
     },
     input: {
+        width: '100%',
         height: 48,
         borderRadius: 5,
         overflow: 'hidden',
@@ -44,8 +46,8 @@ export default StyleSheet.create({
         flexDirection: "row",
         justifyContent: "flex-start",
         alignItems: "center",
-        width: "90%",
-        marginTop: 16,
+        width: "95%",
+        marginBottom: 16,
         alignSelf: "center",
     },
     filterTag: {
@@ -61,5 +63,11 @@ export default StyleSheet.create({
     },
     filterTagText: {
         fontSize: 16
+    },
+    cardList: {
+        height: "60%",
+        width: "95%",
+        alignSelf: "center",
+        flexDirection: "column"
     }
 })
