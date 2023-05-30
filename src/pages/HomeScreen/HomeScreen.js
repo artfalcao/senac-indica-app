@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { Image, Text, TextInput, View, FlatList } from 'react-native'
+import React, { useState, useEffect } from 'react';
+import { View, Image, Text, TextInput, FlatList, TouchableOpacity } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { AntDesign } from '@expo/vector-icons'; 
 import ItemCard from '../../components/ItemCard';
@@ -478,15 +478,22 @@ const DATA = [
 //     },
 //   ];
 
-export default function HomeScreen(props) {
+export default function HomeScreen({ navigation }) {
     const [ search, setSearch ] = useState("");
     const [ data, setData ] = useState([]);
 
     const renderItem = ({item}) => {
-      console.log("renderItem item: ", item);
       return (
         <ItemCard item={item} />
       )
+    }
+
+    const handleOpenFilter = () => {
+      navigation.navigate('FilterPage')
+    }
+
+    const handleSubmit = () => {
+      console.log(search)
     }
 
     useEffect(() => {
@@ -511,24 +518,28 @@ export default function HomeScreen(props) {
                 </View>
 
                 <View style={styles.searchBox}>
-                <TextInput
-                    style={styles.input}
-                    placeholder='Insira sua busca aqui'
-                    placeholderTextColor="#aaaaaa"
-                    onChangeText={(text) => setSearch(text)}
-                    value={search}
-                    underlineColorAndroid="transparent"
-                    autoCapitalize="none"
-                />
+                  <TextInput
+                      style={styles.input}
+                      placeholder='Insira sua busca aqui'
+                      placeholderTextColor="#aaaaaa"
+                      onChangeText={(text) => setSearch(text)}
+                      value={search}
+                      underlineColorAndroid="transparent"
+                      autoCapitalize="none"
+                      onSubmitEditing={handleSubmit}
+                  />
                 </View>
             </KeyboardAwareScrollView>
         </View>
 
          <View style={styles.row2}>
-            <View style={styles.filterTag}>
+            <TouchableOpacity 
+              style={styles.filterTag} 
+              onPress={handleOpenFilter}
+            >
                 <AntDesign name="filter" size={24} color="#B66E6F" />
                 <Text style={styles.filterTagText}>Filtrar por...</Text>
-            </View>
+            </TouchableOpacity>
         </View>
 
           <FlatList

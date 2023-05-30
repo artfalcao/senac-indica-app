@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { View, Image, Text } from "react-native";
 import styles from "./styles";
 import { Ionicons } from '@expo/vector-icons'; 
@@ -6,11 +6,6 @@ import { Ionicons } from '@expo/vector-icons';
 
 
 const ItemCard = ({ item }) => {
-
-  useEffect(() => {
-    console.log("ItemCard item: ", item.url);
-  }, [])
-
 
   return (
     <View style={styles.container}>
