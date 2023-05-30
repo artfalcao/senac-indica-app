@@ -30,12 +30,21 @@ export default function FilterPage({ navigation }) {
   });
 
   const handleKeyPress = () => {
-    console.log('clicou!')
-  }
+    let localsToFilter = [];
+    let typesToFilter = [];
 
-  useEffect(() => {
-    console.log(localSelected);
-  }, [localSelected])
+    if (localSelected.includeRecife === true) localsToFilter.push("recife");
+    if (localSelected.includeOlinda === true) localsToFilter.push("olinda");
+    if (localSelected.includeIgarassu === true) localsToFilter.push("igarassu");
+
+    if (typeOfPhoto.natureza === true) typesToFilter.push("natureza");
+    if (typeOfPhoto.alimentacao === true) typesToFilter.push("alimentacao");
+    if (typeOfPhoto.fotosDeRua === true) typesToFilter.push("fotos de rua");
+    if (typeOfPhoto.lazer === true) typesToFilter.push("lazer");
+    if (typeOfPhoto.porDeSol === true) typesToFilter.push("por de sol");
+    if (typeOfPhoto.praias === true) typesToFilter.push("praia");
+
+  }
 
   return (
     <>

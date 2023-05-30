@@ -4,6 +4,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { AntDesign } from '@expo/vector-icons'; 
 import ItemCard from '../../components/ItemCard';
 import styles from './styles';
+import api from '../../services/api';
 
 const DATA = [
     {
@@ -497,12 +498,14 @@ export default function HomeScreen({ navigation }) {
     }
 
     useEffect(() => {
-        const getData = () => {
-            setData(DATA);
+        const getData = async () => {
+          const { data:DATA } = await api.get('/indicacao');
+          setData(DATA);
         }
 
         getData();
-    }, []);
+      }, [])
+        
 
     return (
         <>
@@ -548,7 +551,7 @@ export default function HomeScreen({ navigation }) {
             style={styles.cardList}
             data={data}
             renderItem={renderItem}
-            keyExtractor={item => item.id}
+            keyExtractor={item => item._id}
           />
         </>
     )

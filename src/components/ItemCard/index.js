@@ -12,7 +12,7 @@ const ItemCard = ({ item }) => {
       <View style={styles.row1}>
         <Image 
           style={styles.image}
-          source={{uri: `${item.url}`}}
+          source={{uri: `${item.image}`}}
         />  
       </View>
 
@@ -23,7 +23,7 @@ const ItemCard = ({ item }) => {
           </View>
 
           <View style={styles.tag}>
-            <Text style={styles.tagText}>Local: {item.local}</Text>
+            <Text style={styles.tagText}>Local: {item.endereco}</Text>
           </View>
         </View>
 
