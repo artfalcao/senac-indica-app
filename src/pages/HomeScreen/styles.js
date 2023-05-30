@@ -44,6 +44,8 @@ export default StyleSheet.create({
     },
     row2: {
         flexDirection: "row",
+        flexWrap: 'wrap',
+        gap: 8,
         justifyContent: "flex-start",
         alignItems: "center",
         width: "95%",

@@ -21,6 +21,7 @@ export default function App() {
           name='Home' 
           component={HomeScreen} 
           options={{title:`Olá, ${user}`}}
+          initialParams={{ filterLocals : [], filterTypes: [] }}
         />
         <Stack.Screen 
           name="Login" 

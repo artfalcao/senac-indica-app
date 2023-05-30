@@ -3,46 +3,37 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import styles from './styles';
 
-export default function FilterPage({ navigation }) {
-  const [ recifeIsSelected, setRecifeIsSelected ] = useState(false);
-  const [ olindaIsSelected, setOlindaIsSelected ] = useState(false);
-  const [ igarassuIsSelected, setIgarasseIsSelected ] = useState(false);
-  const [ naturezaIsSelected, setNaturezaIsSelected ] = useState(false);
-  const [ alimentacaoIsSelected, setAlimentacaoIsSelected ] = useState(false);
-  const [ fotosDeRuaIsSelected, setFotosDeRuaIsSelected ] = useState(false);
-  const [ lazerIsSelected, setLazerIsSelected ] = useState(false);
-  const [ porDeSolIsSelected, setPorDeSolIsSelected ] = useState(false);
-  const [ praiasIsSelected, setPraiasIsSelected ] = useState(false);
+export default function FilterPage({ route, navigation }) {
+  const { filterLocals, filterTypes } = route.params;
+
+  const [ recifeIsSelected, setRecifeIsSelected ] = useState(filterLocals.includes('recife'));
+  const [ olindaIsSelected, setOlindaIsSelected ] = useState(filterLocals.includes('olinda'));
+  const [ igarassuIsSelected, setIgarassuIsSelected ] = useState(filterLocals.includes('igarassu'));
+
+  const [ naturezaIsSelected, setNaturezaIsSelected ] = useState(filterTypes.includes('natureza'));
+  const [ alimentacaoIsSelected, setAlimentacaoIsSelected ] = useState(filterTypes.includes('alimentacao'));
+  const [ fotosDeRuaIsSelected, setFotosDeRuaIsSelected ] = useState(filterTypes.includes('fotosDeRua'));
+  const [ lazerIsSelected, setLazerIsSelected ] = useState(filterTypes.includes('lazer'));
+  const [ porDeSolIsSelected, setPorDeSolIsSelected ] = useState(filterTypes.includes('porDeSol'));
+  const [ praiasIsSelected, setPraiasIsSelected ] = useState(filterTypes.includes('praias'));
 
 
-  const [ localSelected, setLocalSelected ] = useState({ 
-    includeRecife: false,
-    includeOlinda: false,
-    includeIgarassu: false
-  });
-  const [ typeOfPhoto, setTypeOfPhoto ] = useState({
-    natureza: false,
-    alimentacao: false,
-    fotosDeRua: false,
-    lazer: false,
-    porDeSol: false,
-    praias: false
-  });
-
-  const handleKeyPress = () => {
+  const handleKeyPress = () => {  
     let localsToFilter = [];
     let typesToFilter = [];
 
-    if (localSelected.includeRecife === true) localsToFilter.push("recife");
-    if (localSelected.includeOlinda === true) localsToFilter.push("olinda");
-    if (localSelected.includeIgarassu === true) localsToFilter.push("igarassu");
+    if (recifeIsSelected) localsToFilter.push('recife');
+    if (olindaIsSelected) localsToFilter.push("olinda");
+    if (igarassuIsSelected) localsToFilter.push("igarassu");
 
-    if (typeOfPhoto.natureza === true) typesToFilter.push("natureza");
-    if (typeOfPhoto.alimentacao === true) typesToFilter.push("alimentacao");
-    if (typeOfPhoto.fotosDeRua === true) typesToFilter.push("fotos de rua");
-    if (typeOfPhoto.lazer === true) typesToFilter.push("lazer");
-    if (typeOfPhoto.porDeSol === true) typesToFilter.push("por de sol");
-    if (typeOfPhoto.praias === true) typesToFilter.push("praia");
+    if (naturezaIsSelected) typesToFilter.push("natureza");
+    if (alimentacaoIsSelected) typesToFilter.push("alimentacao");
+    if (fotosDeRuaIsSelected) typesToFilter.push("fotos de rua");
+    if (lazerIsSelected) typesToFilter.push("lazer");
+    if (porDeSolIsSelected) typesToFilter.push("por de sol");
+    if (praiasIsSelected) typesToFilter.push("praia");
+
+    navigation.navigate('Home', {filterLocals : localsToFilter, filterTypes: typesToFilter});
 
   }
 
@@ -65,7 +56,6 @@ export default function FilterPage({ navigation }) {
         disableBuiltInState
         onPress={() => {
           setRecifeIsSelected(!recifeIsSelected)
-          setLocalSelected({...localSelected, includeRecife: !recifeIsSelected})
         }}
       />
 
@@ -79,10 +69,9 @@ export default function FilterPage({ navigation }) {
         innerIconStyle={{borderRadius: 0, }}
         isChecked={olindaIsSelected}
         text="Olinda"
-        //disableBuiltInState
+        disableBuiltInState
         onPress={() => {
           setOlindaIsSelected(!olindaIsSelected)
-          setLocalSelected({...localSelected, includeOlinda: !olindaIsSelected})
         }}
       />
 
@@ -96,10 +85,9 @@ export default function FilterPage({ navigation }) {
         innerIconStyle={{borderRadius: 0, }}
         isChecked={igarassuIsSelected}
         text="Igarassu"
-        //disableBuiltInState
+        disableBuiltInState
         onPress={() => {
-          setIgarasseIsSelected(!igarassuIsSelected)
-          setLocalSelected({...localSelected, includeIgarassu: !igarassuIsSelected})
+          setIgarassuIsSelected(!igarassuIsSelected)
         }}
       />
     </View>
@@ -121,7 +109,6 @@ export default function FilterPage({ navigation }) {
         disableBuiltInState
         onPress={() => {
           setNaturezaIsSelected(!naturezaIsSelected)
-          setTypeOfPhoto({...typeOfPhoto, natureza: !naturezaIsSelected})
         }}
       />
 
@@ -135,10 +122,9 @@ export default function FilterPage({ navigation }) {
         innerIconStyle={{borderRadius: 0, }}
         isChecked={alimentacaoIsSelected}
         text="Alimentação"
-        //disableBuiltInState
+        disableBuiltInState
         onPress={() => {
           setAlimentacaoIsSelected(!alimentacaoIsSelected)
-          setTypeOfPhoto({...typeOfPhoto, alimentacao: !olindaalimentacaoIsSelectedIsSelected})
         }}
       />
 
@@ -152,10 +138,9 @@ export default function FilterPage({ navigation }) {
         innerIconStyle={{borderRadius: 0, }}
         isChecked={fotosDeRuaIsSelected}
         text="Fotos de Rua"
-        //disableBuiltInState
+        disableBuiltInState
         onPress={() => {
           setFotosDeRuaIsSelected(!fotosDeRuaIsSelected)
-          setTypeOfPhoto({...typeOfPhoto, fotosDeRua: !fotosDeRuaIsSelected})
         }}
       />
 
@@ -169,10 +154,9 @@ export default function FilterPage({ navigation }) {
         innerIconStyle={{borderRadius: 0, }}
         isChecked={lazerIsSelected}
         text="Espaços Culturais e Lazer"
-        //disableBuiltInState
+        disableBuiltInState
         onPress={() => {
           setLazerIsSelected(!lazerIsSelected)
-          setTypeOfPhoto({...typeOfPhoto, lazer: !lazerIsSelected})
         }}
       />
 
@@ -186,10 +170,9 @@ export default function FilterPage({ navigation }) {
         innerIconStyle={{borderRadius: 0, }}
         isChecked={porDeSolIsSelected}
         text="Pores de Sol"
-        //disableBuiltInState
+        disableBuiltInState
         onPress={() => {
           setPorDeSolIsSelected(!porDeSolIsSelected)
-          setTypeOfPhoto({...typeOfPhoto, porDeSol: !porDeSolIsSelected})
         }}
       />
 
@@ -203,10 +186,9 @@ export default function FilterPage({ navigation }) {
         innerIconStyle={{borderRadius: 0, }}
         isChecked={lazerIsSelected}
         text="Praias"
-        //disableBuiltInState
+        disableBuiltInState
         onPress={() => {
           setPraiasIsSelected(!praiasIsSelected)
-          setTypeOfPhoto({...typeOfPhoto, praias: !praiasIsSelected})
         }}
       />
     </View>

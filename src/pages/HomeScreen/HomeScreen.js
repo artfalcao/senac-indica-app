@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Image, Text, TextInput, FlatList, TouchableOpacity } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { AntDesign } from '@expo/vector-icons'; 
+import { AntDesign } from '@expo/vector-icons';
 import ItemCard from '../../components/ItemCard';
 import styles from './styles';
 import api from '../../services/api';
@@ -479,9 +479,11 @@ const DATA = [
 //     },
 //   ];
 
-export default function HomeScreen({ navigation }) {
+export default function HomeScreen({ route, navigation }) {
     const [ search, setSearch ] = useState("");
     const [ data, setData ] = useState([]);
+
+    const { filterLocals, filterTypes } = route.params;
 
     const renderItem = ({item}) => {
       return (
@@ -490,7 +492,11 @@ export default function HomeScreen({ navigation }) {
     }
 
     const handleOpenFilter = () => {
-      navigation.navigate('FilterPage')
+      navigation.navigate('FilterPage', {filterLocals, filterTypes})
+    }
+
+    const handleCloseFilterTag = () => {
+      console.log("clicou!")
     }
 
     const handleSubmit = () => {
@@ -543,6 +549,18 @@ export default function HomeScreen({ navigation }) {
                 <AntDesign name="filter" size={24} color="#B66E6F" />
                 <Text style={styles.filterTagText}>Filtrar por...</Text>
             </TouchableOpacity>
+
+          
+            {filterLocals.length > 0 && filterLocals.map((item, index) => (
+              <TouchableOpacity 
+                style={styles.filterTag}
+                onPress={handleCloseFilterTag}
+              >
+                <Text keyExtractor={index} style={styles.filterTagText}>{item}</Text>
+                <AntDesign name="close" size={24} color="black" />
+              </TouchableOpacity>
+            ))}
+            
         </View>
 
           <FlatList
