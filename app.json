@@ -1,13 +1,13 @@
 {
   "expo": {
-    "name": "senac-indica",
-    "slug": "senac-indica",
+    "name": "indicAi",
+    "slug": "indicAi",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/logo-foto-senac.png",
+    "icon": "./assets/indicai-column.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/logo-foto-senac.png",
+      "image": "./assets/indicai-column.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -19,12 +19,12 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/logo-foto-senac.png",
+        "foregroundImage": "./assets/indicai-column.png",
         "backgroundColor": "#ffffff"
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/indicai-column.png"
     }
   }
 }
