@@ -63,6 +63,15 @@ export default StyleSheet.create({
         alignItems: "center",
         padding: 5
     },
+    filterTagActive: {
+        borderRadius: 20,
+        backgroundColor: "#7EC16E",
+        flexDirection: "row",
+        justifyContent: "space-around",
+        alignItems: "center",
+        paddingVertical: 8,
+        paddingHorizontal: 16
+    },
     filterTagText: {
         fontSize: 16
     },

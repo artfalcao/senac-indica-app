@@ -17,7 +17,7 @@ export default StyleSheet.create({
     height: 48,
     marginTop: 24,
     borderRadius: 24,
-    width: "80%",
+    width: "40%",
     backgroundColor: "#BD383D",
   },
   btnText: {
@@ -26,5 +26,24 @@ export default StyleSheet.create({
     fontSize: 24,
     fontWeight: '300',
     textAlign: 'center',
-  }
+  },
+  btnBoxes: {
+    flexDirection: 'row',
+    justifyContent: 'space-around'
+  },
+  btnClear: {
+    alignSelf: 'center',
+    height: 48,
+    marginTop: 24,
+    borderRadius: 24,
+    width: "40%",
+    backgroundColor: "#D9D9D9",
+  },
+  btnTextClear: {
+    height: "100%",
+    color: '#B66E6F',
+    fontSize: 24,
+    fontWeight: '300',
+    textAlign: 'center',
+  },
 })

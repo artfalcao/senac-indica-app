@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Image, Text } from "react-native";
+import { View, Image, Text, TouchableOpacity } from "react-native";
 import styles from "./styles";
 import { Ionicons } from '@expo/vector-icons'; 
 
@@ -7,13 +7,16 @@ import { Ionicons } from '@expo/vector-icons';
 
 const ItemCard = ({ item }) => {
 
+
   return (
     <View style={styles.container}>
       <View style={styles.row1}>
-        <Image 
-          style={styles.image}
-          source={{uri: `${item.image}`}}
-        />  
+        <TouchableOpacity /*onPress={handlePress}*/>
+          <Image 
+            style={styles.image}
+            source={{uri: `${item.image}`}}
+          />  
+        </TouchableOpacity>
       </View>
 
       <View style={styles.row2}>

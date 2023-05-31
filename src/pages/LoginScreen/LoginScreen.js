@@ -2,8 +2,11 @@ import React, { useState } from 'react'
 import { Image, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import styles from './styles';
+import api from '../../services/api';
 
-export default function LoginScreen({navigation}) {
+export default function LoginScreen({navigation, route}) {
+    const { userName } = route.params;
+
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
@@ -11,7 +14,17 @@ export default function LoginScreen({navigation}) {
         navigation.navigate('Registration')
     }
 
-    const onLoginPress = () => {
+    const onLoginPress = async () => {
+        if (email != "" && password != "") {
+            const { data, status } = await api.post('/user/login', {
+                email: email,
+                password: password
+            })
+            console.log(data);
+            if (status === 200) {
+                navigation.navigate('Home')
+            }
+        }
     }
 
     return (

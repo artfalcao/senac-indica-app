@@ -10,12 +10,12 @@ export default function FilterPage({ route, navigation }) {
   const [ olindaIsSelected, setOlindaIsSelected ] = useState(filterLocals.includes('olinda'));
   const [ igarassuIsSelected, setIgarassuIsSelected ] = useState(filterLocals.includes('igarassu'));
 
-  const [ naturezaIsSelected, setNaturezaIsSelected ] = useState(filterTypes.includes('natureza'));
-  const [ alimentacaoIsSelected, setAlimentacaoIsSelected ] = useState(filterTypes.includes('alimentacao'));
-  const [ fotosDeRuaIsSelected, setFotosDeRuaIsSelected ] = useState(filterTypes.includes('fotosDeRua'));
-  const [ lazerIsSelected, setLazerIsSelected ] = useState(filterTypes.includes('lazer'));
-  const [ porDeSolIsSelected, setPorDeSolIsSelected ] = useState(filterTypes.includes('porDeSol'));
-  const [ praiasIsSelected, setPraiasIsSelected ] = useState(filterTypes.includes('praias'));
+  const [ naturezaIsSelected, setNaturezaIsSelected ] = useState(filterTypes.includes('Natureza'));
+  const [ alimentacaoIsSelected, setAlimentacaoIsSelected ] = useState(filterTypes.includes('Alimentacao'));
+  const [ fotosDeRuaIsSelected, setFotosDeRuaIsSelected ] = useState(filterTypes.includes('Foto de rua'));
+  const [ lazerIsSelected, setLazerIsSelected ] = useState(filterTypes.includes('Espaços culturais e lazer'));
+  const [ porDeSolIsSelected, setPorDeSolIsSelected ] = useState(filterTypes.includes('Pores do sol'));
+  // const [ praiasIsSelected, setPraiasIsSelected ] = useState(filterTypes.includes('praias'));
 
 
   const handleKeyPress = () => {  
@@ -26,15 +26,39 @@ export default function FilterPage({ route, navigation }) {
     if (olindaIsSelected) localsToFilter.push("olinda");
     if (igarassuIsSelected) localsToFilter.push("igarassu");
 
-    if (naturezaIsSelected) typesToFilter.push("natureza");
-    if (alimentacaoIsSelected) typesToFilter.push("alimentacao");
+    if (naturezaIsSelected) typesToFilter.push("Natureza");
+    if (alimentacaoIsSelected) typesToFilter.push("Alimentacao");
     if (fotosDeRuaIsSelected) typesToFilter.push("fotos de rua");
     if (lazerIsSelected) typesToFilter.push("lazer");
     if (porDeSolIsSelected) typesToFilter.push("por de sol");
-    if (praiasIsSelected) typesToFilter.push("praia");
+    // if (praiasIsSelected) typesToFilter.push("praia");
 
-    navigation.navigate('Home', {filterLocals : localsToFilter, filterTypes: typesToFilter});
+    navigation.navigate('Home', {
+      filterLocals : localsToFilter, 
+      filterTypes: typesToFilter,
+      busca: ""
+    });
 
+  }
+
+  const handleClear = () => {
+    setRecifeIsSelected(false);
+    setOlindaIsSelected(false);
+    setIgarassuIsSelected(false);
+
+    setNaturezaIsSelected(false);
+    setAlimentacaoIsSelected(false);
+    setFotosDeRuaIsSelected(false);
+    setLazerIsSelected(false);
+    setPorDeSolIsSelected(false);
+    // setPraiasIsSelected(false);
+
+    navigation.navigate('Home', {
+      filterLocals: [],
+      filterTypes: [],
+      busca: "",
+      cleared: true
+    })
   }
 
   return (
@@ -176,7 +200,7 @@ export default function FilterPage({ route, navigation }) {
         }}
       />
 
-      <BouncyCheckbox
+      {/* <BouncyCheckbox
         size={24}
         fillColor="#B66E6F"
         unfillColor="#FFFFFF"
@@ -184,21 +208,31 @@ export default function FilterPage({ route, navigation }) {
         style={{marginLeft: 32, marginTop: 12}}
         textStyle={{textDecorationLine: "none", fontSize: 20, }}
         innerIconStyle={{borderRadius: 0, }}
-        isChecked={lazerIsSelected}
+        isChecked={praiasIsSelected}
         text="Praias"
         disableBuiltInState
         onPress={() => {
           setPraiasIsSelected(!praiasIsSelected)
         }}
-      />
+      /> */}
     </View>
 
-    <TouchableOpacity 
-      style={styles.btnBox}
-      onPress={handleKeyPress}
-    >
-      <Text style={styles.btnText} >APLICAR</Text>
-    </TouchableOpacity>
+    <View style={styles.btnBoxes}>
+      <TouchableOpacity 
+        style={styles.btnBox}
+        onPress={handleKeyPress}
+      >
+        <Text style={styles.btnText} >APLICAR</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity 
+        style={styles.btnClear}
+        onPress={handleClear}
+      >
+        <Text style={styles.btnTextClear} >LIMPAR</Text>
+      </TouchableOpacity>
+    </View>
+    
     
       
     </>

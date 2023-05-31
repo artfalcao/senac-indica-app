@@ -1,19 +1,31 @@
 import React, { useState } from 'react'
-import { Image, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { Image, Text, TextInput, TouchableOpacity, View, Alert } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import styles from './styles';
+import api from '../../services/api';
 
 export default function RegistrationScreen({navigation}) {
-    const [fullName, setFullName] = useState('')
+    const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
 
-    const onFooterLinkPress = () => {
-        navigation.navigate('Login')
-    }
-
-    const onRegisterPress = () => {
+    const onRegisterPress = async () => {
+        if (password === confirmPassword && name != "" && email != "" && password != "") {
+            const { data, status } = await api.post('/user/createUser', {
+                name,
+                email,
+                password
+            })
+            console.log(data);
+            if (data.msg === "Usuário criado com sucesso") {
+                Alert.alert(data.msg);
+                navigation.navigate('Login', {
+                userName: data.response[0].name,
+                })
+            }
+        }
+        
     }
 
     return (
@@ -29,8 +41,8 @@ export default function RegistrationScreen({navigation}) {
                     style={styles.input}
                     placeholder='Nome'
                     placeholderTextColor="#aaaaaa"
-                    onChangeText={(text) => setFullName(text)}
-                    value={fullName}
+                    onChangeText={(text) => setName(text)}
+                    value={name}
                     underlineColorAndroid="transparent"
                     autoCapitalize="none"
                 />
@@ -69,7 +81,7 @@ export default function RegistrationScreen({navigation}) {
                     <Text style={styles.buttonTitle}>Criar conta</Text>
                 </TouchableOpacity>
                 <View style={styles.footerView}>
-                    <Text style={styles.footerText}>Já possui uma conta? <Text onPress={onFooterLinkPress} style={styles.footerLink}>Entrar</Text></Text>
+                    <Text style={styles.footerText}>Já possui uma conta? <Text onPress={() => navigation.navigate('Login')} style={styles.footerLink}>Entrar</Text></Text>
                 </View>
             </KeyboardAwareScrollView>
         </View>
