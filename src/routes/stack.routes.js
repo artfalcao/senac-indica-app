@@ -3,7 +3,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { 
   LoginScreen, 
   RegistrationScreen, 
-  ItemScreen } from '../pages/index';
+  ItemScreen,
+  EditUserScreen } from '../pages/index';
 
 import DrawerRoutes from './drawer.routes';
 
@@ -14,13 +15,13 @@ export default function StackRoutes() {
   return (
       <Stack.Navigator initialRouteName={'Login'}>
         <Stack.Screen 
-          name="Login" 
+          name="LoginScreen" 
           component={LoginScreen} 
           options={{ title:'Entrar' }}
         />
 
         <Stack.Screen 
-          name="Registration" 
+          name="RegistrationScreen" 
           component={RegistrationScreen} 
           options={{ title:'Cadastre-se' }}
         />
@@ -32,9 +33,15 @@ export default function StackRoutes() {
         />
 
         <Stack.Screen 
-          name="Home" 
+          name="HomeScreen" 
           component={DrawerRoutes}
           options={{ headerShown: false }}
+        />
+
+        <Stack.Screen 
+          name="EditUserScreen" 
+          component={EditUserScreen} 
+          options={{ title:'Editar Dados Pessoais' }}
         />
       </Stack.Navigator>
   );

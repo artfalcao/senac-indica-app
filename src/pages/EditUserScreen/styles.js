@@ -28,18 +28,29 @@ export default StyleSheet.create({
   dataField: {
     flexDirection: "row",
     gap: 8,
-    alignItems: "center",    
+    alignItems: "center",
   },
   userData: {
     fontSize: 20,
     fontWeight: "300",
     paddingRight: 8
   },
-  editBtn: {
+  saveBtn: {
     marginTop: 64,
     marginHorizontal: 16,
     width: "80%",
-    height: 48,
+    height: 54,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#BD383D",
+    borderRadius: 16,
+    alignSelf: "center"
+  },
+  cancelBtn: {
+    marginTop: 32,
+    marginHorizontal: 16,
+    width: "80%",
+    height: 54,
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#B66E6F",
@@ -49,6 +60,29 @@ export default StyleSheet.create({
   textBtn: {
     fontSize: 24,
     color: "white"
+  },
+  input: {
+      height: 48,
+      borderRadius: 5,
+      overflow: 'hidden',
+      backgroundColor: 'white',
+      paddingHorizontal: 16,
+      paddingVertical: 8,
+      marginVertical: 8,
+      fontSize: 20,
+      fontWeight:"300", 
+  },
+  inputName: {
+      height: 48,
+      fontSize: 24,
+      paddingHorizontal: 16,
+      paddingVertical: 8,
+      borderRadius: 5,
+      overflow: 'hidden',
+      backgroundColor: 'white',
+      marginTop: 16,
+      marginLeft: 30,
+      marginRight: 30,
   }
 
 })

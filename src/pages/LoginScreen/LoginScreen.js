@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Image, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from './styles';
 import api from '../../services/api';
 
@@ -8,8 +9,17 @@ export default function LoginScreen({navigation, route}) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    const storeData = async (user) => {
+        try {
+          const jsonUser = JSON.stringify(user);
+          await AsyncStorage.setItem('@user', jsonUser);
+        } catch (e) {
+          console.log(e.message);
+        }
+      }
+
     const onFooterLinkPress = () => {
-        navigation.navigate('Registration')
+        navigation.navigate('RegistrationScreen');
     }
 
     const onLoginPress = async () => {
@@ -18,9 +28,11 @@ export default function LoginScreen({navigation, route}) {
                 email: email,
                 password: password
             })
-            console.log(data);
+            
             if (status === 200) {
-                navigation.navigate('Home')
+                //console.log(data);
+                storeData(data);
+                navigation.navigate('HomeScreen');
             }
         }
     }

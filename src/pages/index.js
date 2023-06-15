@@ -11,3 +11,5 @@ export { default as ItemScreen } from './ItemScreen/ItemScreen';
 export { default as AddScreen } from './AddScreen/AddScreen';
 
 export { default as UserScreen } from './UserScreen/UserScreen';
+
+export { default as EditUserScreen } from './EditUserScreen/EditUserScreen';
