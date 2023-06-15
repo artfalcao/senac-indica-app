@@ -15,7 +15,6 @@ export default function DrawerRoutes() {
           drawerIcon: () => <Feather name="home" size={24} color="black" />,
           drawerLabel: "Início"
         }} 
-        
       />
     </Drawer.Navigator>
   );

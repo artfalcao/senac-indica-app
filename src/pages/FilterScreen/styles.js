@@ -14,6 +14,7 @@ export default StyleSheet.create({
   }, 
   btnBox: {
     alignSelf: 'center',
+    justifyContent: "center",
     height: 48,
     marginTop: 24,
     borderRadius: 24,
@@ -33,6 +34,7 @@ export default StyleSheet.create({
   },
   btnClear: {
     alignSelf: 'center',
+    justifyContent: "center",
     height: 48,
     marginTop: 24,
     borderRadius: 24,
