@@ -14,17 +14,17 @@ export default function HomeScreen({ route, navigation }) {
 
     const renderItem = ({item}) => {
       return (
-        <ItemCard item={item} /*handlePress={goToItemPage(item._id)}*/ />
+        <ItemCard item={item} handlePress={goToItemPage(item._id)} />
       )
     }
 
-    // const goToItemPage = async (photoId) => {
-    //   const { data: photoData } = await api.get(`/indicacao/${photoId}`);
-    //   console.log(photoData);
-    //   navigation.navigate('ItemPage', {
-    //     photoData: photoData
-    //   })
-    // }
+    const goToItemPage = async (photoId) => {
+      const { data: photoData } = await api.get(`/indicacao/${photoId}`);
+      console.log(photoData);
+      navigation.navigate('ItemScreen', {
+        photoData: photoData
+      })
+    }
 
     const filterByLocal = async () => {
         console.log(filterLocals[0]);
@@ -41,7 +41,7 @@ export default function HomeScreen({ route, navigation }) {
     }
 
     const handleOpenFilter = () => {
-      navigation.navigate('FilterPage', {filterLocals, filterTypes});
+      navigation.navigate('FilterScreen', {filterLocals, filterTypes});
     }
 
     // const handleCloseFilterTag = () => {

@@ -4,6 +4,10 @@ export { default as HomeScreen } from './HomeScreen/HomeScreen';
 
 export { default as RegistrationScreen } from './RegistrationScreen/RegistrationScreen';
 
-export { default as FilterPage } from './FilterPage/FilterPage';
+export { default as FilterScreen } from './FilterScreen/FilterScreen';
 
-export { default as ItemPage } from './ItemPage/ItemPage';
+export { default as ItemScreen } from './ItemScreen/ItemScreen';
+
+export { default as AddScreen } from './AddScreen/AddScreen';
+
+export { default as UserScreen } from './UserScreen/UserScreen';

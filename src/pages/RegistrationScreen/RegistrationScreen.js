@@ -5,10 +5,10 @@ import styles from './styles';
 import api from '../../services/api';
 
 export default function RegistrationScreen({navigation}) {
-    const [name, setName] = useState('')
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [confirmPassword, setConfirmPassword] = useState('')
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
 
     const onRegisterPress = async () => {
         if (password === confirmPassword && name != "" && email != "" && password != "") {

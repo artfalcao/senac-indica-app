@@ -5,10 +5,8 @@ import styles from './styles';
 import api from '../../services/api';
 
 export default function LoginScreen({navigation, route}) {
-    const { userName } = route.params;
-
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
     const onFooterLinkPress = () => {
         navigation.navigate('Registration')
@@ -36,15 +34,17 @@ export default function LoginScreen({navigation, route}) {
                     style={styles.logo}
                     source={require('../../../assets/indicai-column.png')}
                 />
+                
                 <TextInput
                     style={styles.input}
                     placeholder='E-mail'
                     placeholderTextColor="#aaaaaa"
-                    onChangeText={(text) => setEmail(text)}
+                    onChangeText={(text) => setEmail(text) }
                     value={email}
                     underlineColorAndroid="transparent"
                     autoCapitalize="none"
                 />
+                
                 <TextInput
                     style={styles.input}
                     placeholderTextColor="#aaaaaa"
@@ -55,6 +55,7 @@ export default function LoginScreen({navigation, route}) {
                     underlineColorAndroid="transparent"
                     autoCapitalize="none"
                 />
+
                 <TouchableOpacity
                     style={styles.button}
                     onPress={() => onLoginPress()}>

@@ -7,6 +7,10 @@ export default StyleSheet.create({
     alignSelf: "center",
   },
   boxTitle: {
-    backgroundColor: ""
+    backgroundColor: "pink",
+    height: 32
+  },
+  title: {
+    color: 'green'
   }
 })

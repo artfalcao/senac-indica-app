@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import styles from './styles';
 
-export default function FilterPage({ route, navigation }) {
+export default function FilterScreen({ route, navigation }) {
   const { filterLocals, filterTypes } = route.params;
 
   const [ recifeIsSelected, setRecifeIsSelected ] = useState(filterLocals.includes('recife'));
@@ -33,7 +33,7 @@ export default function FilterPage({ route, navigation }) {
     if (porDeSolIsSelected) typesToFilter.push("por de sol");
     // if (praiasIsSelected) typesToFilter.push("praia");
 
-    navigation.navigate('Home', {
+    navigation.navigate('HomeScreen', {
       filterLocals : localsToFilter, 
       filterTypes: typesToFilter,
       busca: ""
@@ -53,7 +53,7 @@ export default function FilterPage({ route, navigation }) {
     setPorDeSolIsSelected(false);
     // setPraiasIsSelected(false);
 
-    navigation.navigate('Home', {
+    navigation.navigate('HomeScreen', {
       filterLocals: [],
       filterTypes: [],
       busca: "",
