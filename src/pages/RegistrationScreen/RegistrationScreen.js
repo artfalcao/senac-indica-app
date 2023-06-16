@@ -11,21 +11,29 @@ export default function RegistrationScreen({navigation}) {
     const [confirmPassword, setConfirmPassword] = useState('');
 
     const onRegisterPress = async () => {
+        console.log(name, email, password);
         if (password === confirmPassword && name != "" && email != "" && password != "") {
-            const { data, status } = await api.post('/user/createUser', {
-                name,
-                email,
-                password
-            })
-            console.log(data);
-            if (data.msg === "Usuário criado com sucesso") {
-                Alert.alert(data.msg);
-                navigation.navigate('Login', {
-                userName: data.response[0].name,
+            try {
+                const { status, data } = await api.post('/user/createUser', {
+                    name: name,
+                    email: email,
+                    password: password
                 })
+                
+                if (status === 201) {
+                    Alert.alert(data.msg);
+                    setEmail("");
+                    setName("");
+                    setPassword("");
+                    setConfirmPassword("");
+                    navigation.navigate('LoginScreen')
+                } else {
+                    Alert.alert("Erro ao criar usuário.")
+                }
+            } catch (e) {
+                console.log("error: ", e.message);
             }
         }
-        
     }
 
     return (
@@ -81,7 +89,7 @@ export default function RegistrationScreen({navigation}) {
                     <Text style={styles.buttonTitle}>Criar conta</Text>
                 </TouchableOpacity>
                 <View style={styles.footerView}>
-                    <Text style={styles.footerText}>Já possui uma conta? <Text onPress={() => navigation.navigate('Login')} style={styles.footerLink}>Entrar</Text></Text>
+                    <Text style={styles.footerText}>Já possui uma conta? <Text onPress={() => navigation.navigate('LoginScreen')} style={styles.footerLink}>Entrar</Text></Text>
                 </View>
             </KeyboardAwareScrollView>
         </View>

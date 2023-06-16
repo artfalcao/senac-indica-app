@@ -7,7 +7,7 @@ const AddScreen = ({ navigation, route }) => {
   return (
     <>
       <View style={styles.boxTitle}>
-        <Text style={styles.title}> AddScreen </Text>
+        <Text style={styles.title}> Página em andamento...</Text>
       </View>
       
     </>
