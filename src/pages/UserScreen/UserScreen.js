@@ -1,15 +1,44 @@
 import React, {useState, useEffect} from 'react';
-import { Text, View, TouchableOpacity } from 'react-native';
+import { Text, View, TouchableOpacity, Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Feather, MaterialCommunityIcons  } from '@expo/vector-icons'; 
 import styles from './styles';
 
 const UserScreen = ({ navigation, route }) => {
-  //const { photoData } = route.params;
   const [user, setUser] = useState({});
 
   const handleOpenEdit = () => {
     navigation.navigate('EditUserScreen');
+  }
+
+  const handleDelete = async () => {
+    const { data, status } = await api.delete('/user/deleteUser', {
+      email: user.email
+    });
+    console.log(data, user)
+
+    if (status === 200) {
+      Alert.alert("Conta excluida com sucesso!");
+      try {
+        await AsyncStorage.clear();
+      } catch(e) {
+        console.log(e.message);
+      }
+      navigation.navigate("LoginScreen");
+    }
+  }
+
+  const handleOpenDelete = () => {
+    Alert.alert('Excluir Conta', 'Tem certeza que deseja excluir sua conta?', [
+      {
+        text: 'Cancelar',
+        onPress: () => console.log("cancelou a deleção"),
+        style: 'cancel',
+      },
+      {text: 'Excluir', 
+      onPress: () => handleDelete,
+      style:'default' },
+    ]);
   }
 
   const getData = async () => {
@@ -17,7 +46,7 @@ const UserScreen = ({ navigation, route }) => {
       const jsonUser = await AsyncStorage.getItem('@user');
       const { _id, email, name, password } = JSON.parse(jsonUser);
       const userData = {_id, name, email, password};
-      setUser(userData);    
+      setUser({...userData});    
     } catch(e) {
       console.log(e.message);
     }
@@ -25,7 +54,6 @@ const UserScreen = ({ navigation, route }) => {
 
   useEffect(() => {
     getData();
-    console.log("user: ", user);
   }, []);
 
   return (
@@ -55,6 +83,13 @@ const UserScreen = ({ navigation, route }) => {
         onPress={handleOpenEdit}
       >
         <Text style={styles.textBtn}>Editar</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity 
+        style={styles.deleteBtn} 
+        onPress={handleOpenDelete}
+      >
+        <Text style={styles.textBtn}>Deletar</Text>
       </TouchableOpacity>
 
       

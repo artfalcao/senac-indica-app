@@ -46,6 +46,17 @@ export default StyleSheet.create({
     borderRadius: 16,
     alignSelf: "center"
   },
+  deleteBtn: {
+    marginTop: 32,
+    marginHorizontal: 16,
+    width: "80%",
+    height: 54,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#afafaf",
+    borderRadius: 16,
+    alignSelf: "center"
+  },
   textBtn: {
     fontSize: 24,
     color: "white"
